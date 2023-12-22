@@ -36,11 +36,14 @@
                     <Rectangle x:Name="Shopkeep1Dialogue" Margin="2,3,1,340" Fill="Black" Width="400"/>
                     <TextBlock x:Name="PinkSnake" HorizontalAlignment="Left" Margin="30,322,0,0" TextWrapping="Wrap" Text="Pink Snake" VerticalAlignment="Top" MouseDown="PinkSnake_MouseDown"/>
                     <TextBlock x:Name="PinkSnakePrice" HorizontalAlignment="Left" Margin="352,322,0,0" TextWrapping="Wrap" Text="50" VerticalAlignment="Top"/>
-                    <TextBlock x:Name="BlueSnake" HorizontalAlignment="Left" Margin="30,342,0,0" TextWrapping="Wrap" Text="Blue Snake" VerticalAlignment="Top"/>
+                    <TextBlock x:Name="BlueSnake" HorizontalAlignment="Left" Margin="30,342,0,0" TextWrapping="Wrap" Text="Blue Snake" VerticalAlignment="Top" MouseDown="BlueSnake_MouseDown"/>
                     <TextBlock x:Name="BlueSnakePrice" HorizontalAlignment="Left" Margin="352,342,0,0" TextWrapping="Wrap" Text="75" VerticalAlignment="Top"/>
-                    <TextBlock x:Name="YellowSnake" HorizontalAlignment="Left" Margin="30,362,0,0" TextWrapping="Wrap" Text="Yellow Snake" VerticalAlignment="Top"/>
+                    <TextBlock x:Name="YellowSnake" HorizontalAlignment="Left" Margin="30,362,0,0" TextWrapping="Wrap" Text="Yellow Snake" VerticalAlignment="Top" MouseDown="YellowSnake_MouseDown"/>
                     <TextBlock x:Name="YellowSnakePrice" HorizontalAlignment="Left" Margin="352,362,0,0" TextWrapping="Wrap" Text="100" VerticalAlignment="Top"/>
-                    <TextBlock x:Name="Next1" HorizontalAlignment="Left" Margin="31,382,0,0" TextWrapping="Wrap" Text="Next Page" VerticalAlignment="Top" Background="Black" Foreground="#FF00FFF9"/>
+                    <TextBlock x:Name="Next1" HorizontalAlignment="Left" Margin="31,382,0,0" TextWrapping="Wrap" Text="Next Page" VerticalAlignment="Top" Background="Black" Foreground="#FFEBEBEB"/>
+                    <TextBlock x:Name="EquipPinkSnake" HorizontalAlignment="Left" Margin="30,322,0,0" TextWrapping="Wrap" Text="Pink Snake" VerticalAlignment="Top" Foreground="#FFFF00D7" MouseDown="EquipPinkSnake_MouseDown"/>
+                    <TextBlock x:Name="EquipBlueSnake" HorizontalAlignment="Left" Margin="30,342,0,0" TextWrapping="Wrap" Text="Blue Snake" VerticalAlignment="Top" Foreground="#FF00FFF2" MouseDown="EquipBlueSnake_MouseDown"/>
+                    <TextBlock x:Name="EquipYellowSnake" HorizontalAlignment="Left" Margin="30,362,0,0" TextWrapping="Wrap" Text="Yellow Snake" VerticalAlignment="Top" Foreground="#FFF9FF86" MouseDown="EquipYellowSnake_MouseDown"/>
                     </Grid>
                 </Grid>
             </Border>

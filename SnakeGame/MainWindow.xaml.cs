@@ -24,7 +24,7 @@ namespace SnakeGame
     {
         private readonly Dictionary<GridValue, ImageSource> gridValToImage = new()
             {
-                { GridValue.Empty, Images.Empty }, {GridValue.Snake, Images.Body }, { GridValue.Food, Images.Food }
+                { GridValue.Empty, Images.Empty }, {GridValue.Snake, Images.CBody }, { GridValue.Food, Images.Food }
             };
 
         private readonly Dictionary<Direction, int> dirToRotation = new()
@@ -35,6 +35,7 @@ namespace SnakeGame
         private readonly int cols = 20;
         private int HighscoreValue = 0;
         private int Total = 0;
+        private int Green = 2;
         private int Pink = 0;
         private int Blue = 0;
         private int Yellow = 0;
@@ -49,6 +50,7 @@ namespace SnakeGame
         {
             InitializeComponent();
             LoadValues();
+            ScoreText.Text = $"Highscore: {HighscoreValue}";
             gridImages = SetupGrid();
             gameState = new GameState(rows, cols);
         }
@@ -174,6 +176,7 @@ namespace SnakeGame
             Audio.Game.Stop();
             Audio.GameOver.Play();
             Values();
+            ScoreText.Text = $"Highscore: {HighscoreValue}";
             Overlay.Visibility = Visibility.Visible;
             OverlayText.Visibility = Visibility.Visible;
             ShopText.Visibility = Visibility.Visible;
@@ -186,8 +189,6 @@ namespace SnakeGame
         {
             Position headPos = gameState.HeadPosition();
             Image image = gridImages[headPos.Row, headPos.Col];
-            image.Source = Images.Head;
-
             int rotation = dirToRotation[gameState.Dir];
             image.RenderTransform = new RotateTransform(rotation);
         }
@@ -212,9 +213,8 @@ namespace SnakeGame
             }
                 Total = Total + gameState.Score;
                 StreamWriter sw = new StreamWriter(Directory.GetCurrentDirectory() + "\\SnakeValues.txt");
-                sw.WriteLine($"{HighscoreValue},{Total}");
+                sw.WriteLine($"{HighscoreValue},{Total},{Green},{Pink},{Blue},{Yellow}");
                 sw.Close();
-                ScoreText.Text = $"Highscore: {HighscoreValue}";
             
         }
         public void LoadValues()
@@ -226,9 +226,12 @@ namespace SnakeGame
                 string TotalValue = sr.ReadLine();
                 HighscoreValue = int.Parse(TotalValue.Split(',')[0]);
                 Total = int.Parse(TotalValue.Split(',')[1]);
+                Green = int.Parse(TotalValue.Split(',')[2]);
+                Pink = int.Parse(TotalValue.Split(',')[3]);
+                Blue = int.Parse(TotalValue.Split(',')[4]);
+                Yellow = int.Parse(TotalValue.Split(',')[5]);
                 sr.Close();
             }
-            ScoreText.Text = $"Highscore: {HighscoreValue}";
         }
 
         private void ShopText_MouseDown(object sender, MouseButtonEventArgs e)
@@ -236,6 +239,27 @@ namespace SnakeGame
             OverlayText.Visibility = Visibility.Hidden;
             ShopText.Visibility = Visibility.Hidden;
             Shop1.Visibility = Visibility.Visible;
+            EquipPinkSnake.Visibility = Visibility.Hidden;
+            EquipBlueSnake.Visibility = Visibility.Hidden;
+            EquipYellowSnake.Visibility = Visibility.Hidden;
+            if (Pink == 1 || Pink == 2)
+            {
+                PinkSnakePrice.Visibility = Visibility.Hidden;
+                PinkSnake.Visibility = Visibility.Hidden;
+                EquipPinkSnake.Visibility = Visibility.Visible;
+            }
+            if (Blue == 1 || Blue == 2)
+            {
+                BlueSnakePrice.Visibility = Visibility.Hidden;
+                BlueSnake.Visibility = Visibility.Hidden;
+                EquipBlueSnake.Visibility = Visibility.Visible;
+            }
+            if (Yellow == 1 || Yellow == 2)
+            {
+                YellowSnakePrice.Visibility = Visibility.Hidden;
+                YellowSnake.Visibility = Visibility.Hidden;
+                EquipYellowSnake.Visibility = Visibility.Visible;
+            }
             Audio.GameOver.Stop();
             Audio.Shopkeep1.Play();
             ScoreText.Text = $"Fruit: {Total}";
@@ -243,35 +267,84 @@ namespace SnakeGame
 
         private void PinkSnake_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (Total >= PinkPrice)
+            if (Total >= PinkPrice && Pink == 0)
             {
                 Pink = 1;
                 Total = Total - PinkPrice;
                 ScoreText.Text = $"Fruit: {Total}";
                 Values();
+                PinkSnakePrice.Visibility = Visibility.Hidden;
+                PinkSnake.Visibility = Visibility.Hidden;
+                EquipPinkSnake.Visibility = Visibility.Visible;
             }
         }
 
         private void BlueSnake_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (Total >= BluePrice)
+            if (Total >= BluePrice && Blue == 0)
             {
                 Blue = 1;
                 Total = Total - BluePrice;
                 ScoreText.Text = $"Fruit: {Total}";
                 Values();
+                BlueSnakePrice.Visibility = Visibility.Hidden;
+                BlueSnake.Visibility = Visibility.Hidden;
+                EquipBlueSnake.Visibility = Visibility.Visible;
             }
         }
 
         private void YellowSnake_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (Total >= YellowPrice)
+            if (Total >= YellowPrice && Yellow == 0)
             {
                 Yellow = 1;
                 Total = Total - YellowPrice;
                 ScoreText.Text = $"Fruit: {Total}";
                 Values();
+                YellowSnakePrice.Visibility = Visibility.Hidden;
+                YellowSnake.Visibility = Visibility.Hidden;
+                EquipYellowSnake.Visibility = Visibility.Visible;
             }
+        }
+
+        private void EquipPinkSnake_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+                Blue = (Blue == 2) ? 1 : Blue;
+                Yellow = (Yellow == 2) ? 1 : Yellow;
+                Green = (Green == 2) ? 1 : Green;
+                Pink = 2;
+                EquipPinkSnake.Text = "Equipped";
+                EquipBlueSnake.Text = "Blue Snake";
+                EquipYellowSnake.Text = "Yellow Snake";
+                Images.CBody = Images.PinkBody;
+
+
+        }
+
+        private void EquipBlueSnake_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+
+            Pink = (Pink == 2) ? 1 : Pink;
+            Yellow = (Yellow == 2) ? 1 : Yellow;
+            Green = (Green == 2) ? 1 : Green;
+            Blue = 2;
+            EquipBlueSnake.Text = "Equipped";
+            EquipPinkSnake.Text = "Pink Snake";
+            EquipYellowSnake.Text = "Yellow Snake";
+            Images.CBody = Images.BlueBody;
+        }
+
+        private void EquipYellowSnake_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+
+            Blue = (Blue == 2) ? 1 : Blue;
+            Pink = (Pink == 2) ? 1 : Pink;
+            Green = (Green == 2) ? 1 : Green;
+            Yellow = 2;
+            EquipYellowSnake.Text = "Equipped";
+            EquipPinkSnake.Text = "Pink Snake";
+            EquipBlueSnake.Text = "Blue Snake";
+            Images.CBody = Images.YellowBody;
         }
     }
 }

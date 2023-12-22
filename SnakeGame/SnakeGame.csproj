@@ -8,6 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Assets\BlueBody.png" />
+    <None Remove="Assets\BlueDeadBody.png" />
+    <None Remove="Assets\BlueDeadHead.png" />
+    <None Remove="Assets\BlueHead.png" />
     <None Remove="Assets\Body.png" />
     <None Remove="Assets\DeadBody.png" />
     <None Remove="Assets\DeadHead.png" />
@@ -20,11 +24,23 @@
     <None Remove="Assets\Head.png" />
     <None Remove="Assets\icon.ico" />
     <None Remove="Assets\Music1.wav" />
+    <None Remove="Assets\PinkBody.png" />
+    <None Remove="Assets\PinkDeadBody.png" />
+    <None Remove="Assets\PinkDeadHead.png" />
+    <None Remove="Assets\PinkHead.png" />
     <None Remove="Assets\Shopkeep1.wav" />
+    <None Remove="Assets\YellowBody.png" />
+    <None Remove="Assets\YellowDeadBody.png" />
+    <None Remove="Assets\YellowDeadHead.png" />
+    <None Remove="Assets\YellowHead.png" />
     <None Remove="Snake.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Assets\BlueBody.png" />
+    <Resource Include="Assets\BlueDeadBody.png" />
+    <Resource Include="Assets\BlueDeadHead.png" />
+    <Resource Include="Assets\BlueHead.png" />
     <Resource Include="Assets\Body.png" />
     <Resource Include="Assets\DeadBody.png" />
     <Resource Include="Assets\DeadHead.png" />
@@ -33,6 +49,9 @@
     <Resource Include="Assets\Food.png" />
     <Resource Include="Assets\Head.png" />
     <Resource Include="Assets\icon.ico" />
+    <Resource Include="Assets\PinkBody.png" />
+    <Resource Include="Assets\PinkDeadBody.png" />
+    <Resource Include="Assets\PinkHead.png" />
     <Resource Include="Assets\Snake.png" />
     <Content Include="Assets\Game.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -46,6 +65,17 @@
     <Content Include="Assets\Shopkeep1.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\YellowBody.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\PinkDeadHead.png" />
+    <Resource Include="Assets\YellowDeadBody.png" />
+    <Resource Include="Assets\YellowDeadHead.png" />
+    <Resource Include="Assets\YellowHead.png" />
   </ItemGroup>
 
 </Project>
